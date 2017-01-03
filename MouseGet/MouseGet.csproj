@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Coordinate.cs" />
+    <Compile Include="Model\MapCoordinate.cs" />
     <Compile Include="Services\CoordinatesLoggingService.cs" />
     <Compile Include="Services\Interfaces\ICoordinatesLoggingService.cs" />
     <Compile Include="MainForm.cs">
@@ -87,6 +88,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converters\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

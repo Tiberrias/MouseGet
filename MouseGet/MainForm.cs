@@ -5,8 +5,6 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using MouseGet.Wrappers;
-using MouseKeyboardActivityMonitor;
-using MouseKeyboardActivityMonitor.WinApi;
 
 namespace MouseGet
 {
@@ -54,7 +52,7 @@ namespace MouseGet
 
         private void OnSaveClick(object sender, EventArgs e)
         {
-            DialogResult saveResult = saveFileDialogCoordinates.ShowDialog();
+            saveFileDialogCoordinates.ShowDialog();
         }
 
         private void OnClearClick(object sender, EventArgs e)

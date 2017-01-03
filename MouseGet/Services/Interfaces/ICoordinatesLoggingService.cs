@@ -1,5 +1,6 @@
 ﻿using MouseGet.Model;
 using System;
+using System.Collections.Generic;
 
 namespace MouseGet.Services.Interfaces
 {
@@ -15,5 +16,7 @@ namespace MouseGet.Services.Interfaces
         string GetCoordinatesLog();
 
         void SetCurrentZCoordinate(int z);
+
+        List<Coordinate> GetCoordinates();
     }
 }

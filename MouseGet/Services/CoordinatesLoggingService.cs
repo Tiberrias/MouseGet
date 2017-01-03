@@ -49,5 +49,9 @@ namespace MouseGet.Services
             CoordinatesLogChanged?.Invoke(_coordinates.Count);
         }
 
+        public List<Coordinate> GetCoordinates()
+        {
+            return _coordinates;
+        }
     }
 }

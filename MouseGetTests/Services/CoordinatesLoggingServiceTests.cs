@@ -117,5 +117,21 @@ namespace MouseGetTests.Services
             Assert.AreEqual(2, countAddedCoordinates);
         }
 
+        [Test]
+        public void GetCoordinates_ReturnProperEntries()
+        {
+            var someCoordinate = new Coordinate() {X = 1, Y = 1};
+            var someOtherCoordinate = new Coordinate() { X = 2, Y = 2 };
+
+            _coordinatesLoggingService.AddCoordinate(someCoordinate);
+            _coordinatesLoggingService.AddCoordinate(someOtherCoordinate);
+
+            var result = _coordinatesLoggingService.GetCoordinates();
+
+            Assert.AreEqual(2, result.Count);
+            Assert.Contains(someCoordinate, result);
+            Assert.Contains(someOtherCoordinate, result);
+        }
+
     }
 }
