@@ -8,7 +8,7 @@ namespace MouseGetTests.Services
     [TestFixture]
     class CoordinatesLoggingServiceTests
     {
-        CoordinatesLoggingService _coordinatesLoggingService;
+        private CoordinatesLoggingService _coordinatesLoggingService;
 
         [SetUp]
         public void SetUp()

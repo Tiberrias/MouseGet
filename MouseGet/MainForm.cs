@@ -4,6 +4,9 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using MouseGet.Wrappers;
+using MouseKeyboardActivityMonitor;
+using MouseKeyboardActivityMonitor.WinApi;
 
 namespace MouseGet
 {
@@ -21,7 +24,8 @@ namespace MouseGet
         public void Init()
         {
             _coordinatesLoggingService = new CoordinatesLoggingService();
-            _mouseHookListenerService = new MouseHookListenerService(_coordinatesLoggingService);
+            
+            _mouseHookListenerService = new MouseHookListenerService(_coordinatesLoggingService, new MouseHookListenerWrapper());
             _coordinatesLoggingService.CoordinatesLogChanged += OnCoordinatesLogChanged;
         }
 
@@ -42,7 +46,7 @@ namespace MouseGet
 
                 File.AppendAllText(filename, _coordinatesLoggingService.GetCoordinatesLog());
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Błąd zapisu do pliku: " + ex.Message);
             }

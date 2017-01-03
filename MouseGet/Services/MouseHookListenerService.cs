@@ -1,22 +1,21 @@
 ﻿using MouseGet.Model;
 using MouseGet.Services.Interfaces;
-using MouseKeyboardActivityMonitor;
-using MouseKeyboardActivityMonitor.WinApi;
 using System;
 using System.Windows.Forms;
+using MouseGet.Wrappers;
 
 namespace MouseGet.Services
 {
     public class MouseHookListenerService : IDisposable
     {
-        private readonly MouseHookListener _mouseHookListener;
+        private readonly IMouseHookListenerWrapper _mouseHookListener;
         private readonly ICoordinatesLoggingService _coordinatesLoggingService;
         public bool IsListening { get; private set; }
 
-        public MouseHookListenerService(ICoordinatesLoggingService coordinatesLoggingService)
+        public MouseHookListenerService(ICoordinatesLoggingService coordinatesLoggingService, IMouseHookListenerWrapper mouseHookListener)
         {
-            _mouseHookListener = new MouseHookListener(new GlobalHooker());
             _coordinatesLoggingService = coordinatesLoggingService;
+            _mouseHookListener = mouseHookListener;
         }
 
         public void Start()
