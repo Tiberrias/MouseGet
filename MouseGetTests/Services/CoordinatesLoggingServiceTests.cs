@@ -97,7 +97,7 @@ namespace MouseGetTests.Services
         {
             int countAddedCoordinates = 0;
             _coordinatesLoggingService.CoordinatesLogChanged += (i) => countAddedCoordinates = i;
-            
+
             _coordinatesLoggingService.AddCoordinate(new Coordinate());
             _coordinatesLoggingService.AddCoordinate(new Coordinate());
             _coordinatesLoggingService.ClearCoordinatesLog();
@@ -116,9 +116,6 @@ namespace MouseGetTests.Services
 
             Assert.AreEqual(2, countAddedCoordinates);
         }
-
-
-
 
     }
 }

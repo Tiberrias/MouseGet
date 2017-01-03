@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using System.Linq;
 using System;
 using MouseGet.Services.Interfaces;
 using MouseGet.Model;
@@ -10,7 +9,7 @@ namespace MouseGet.Services
     
     public class CoordinatesLoggingService : ICoordinatesLoggingService
     {
-        private List<Coordinate> _coordinates;
+        private readonly List<Coordinate> _coordinates;
         private int _currentZCoordinate;
 
         public event Action<int> CoordinatesLogChanged = delegate { };
@@ -47,10 +46,7 @@ namespace MouseGet.Services
 
         private void HandleCoordinatesChanged()
         {
-            if (CoordinatesLogChanged != null)
-            {
-                CoordinatesLogChanged(_coordinates.Count);
-            }
+            CoordinatesLogChanged?.Invoke(_coordinates.Count);
         }
 
     }
