@@ -1,4 +1,6 @@
-﻿namespace MouseGet.Model
+﻿using System.Globalization;
+
+namespace MouseGet.Model
 {
     public class MapCoordinate
     {
@@ -8,7 +10,7 @@
 
         public override string ToString()
         {
-            return ("{" + Y + "," + X + "," + Z + "}");
+            return ("{" + Y.ToString(CultureInfo.InvariantCulture) + "," + X.ToString(CultureInfo.InvariantCulture) + "," + Z.ToString(CultureInfo.InvariantCulture) + "}");
         }
     }
 }
