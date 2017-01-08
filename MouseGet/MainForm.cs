@@ -6,7 +6,6 @@ using System.IO;
 using System.Windows.Forms;
 using MouseGet.Converters;
 using MouseGet.Mapper;
-using MouseGet.Model;
 using MouseGet.Parsers;
 using MouseGet.Parsers.Interfaces;
 using MouseGet.Services.Interfaces;
@@ -97,7 +96,7 @@ namespace MouseGet
                 );
                 if (!_mapTransformationService.IsValidForTransformation(mapTransformationCoordinates))
                 {
-                    throw new ArgumentException("Wybrane punkty referencyjne nie pozwalają na obliczenie transformacji ukłądu współrzędnych");
+                    throw new ArgumentException("Wybrane punkty referencyjne nie pozwalają na obliczenie transformacji układu współrzędnych");
                 }
                 _mapCoordinateConverter.MapTransformation = _mapTransformationService.Transform(mapTransformationCoordinates);
             }
