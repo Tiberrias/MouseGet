@@ -4,14 +4,8 @@ namespace MouseGet.Services.Interfaces
 {
     public interface IMapTransformationService
     {
-        MapTransformation Transform(Coordinate firstScreenCoordinate,
-            MapCoordinate firstMapCoordinate,
-            Coordinate secondScreenCoordinate,
-            MapCoordinate secondMapCoordinate);
+        MapTransformation Transform(MapTransformationCoordinates mapTransformationCoordinates);
 
-        bool IsValidForTransformation(Coordinate firstScreenCoordinate, 
-            MapCoordinate firstMapCoordinate,
-            Coordinate secondScreenCoordinate,
-            MapCoordinate secondMapCoordinate);
+        bool IsValidForTransformation(MapTransformationCoordinates mapTransformationCoordinates);
     }
 }

@@ -34,13 +34,16 @@ namespace MouseGetTests.Mapper
                     Scale = 1
                 };
 
-            MapCoordinate firstMapCoordinate = new MapCoordinate() {X = 1, Y = 1};
-            MapCoordinate secondMapCoordinate = new MapCoordinate() { X = 2, Y = 3 };
-            Coordinate firstScreenCoordinate = new Coordinate() { X = 1, Y = 1 };
-            Coordinate secondScreenCoordinate = new Coordinate() { X = 2, Y = 3 };
+            MapTransformationCoordinates mapTransformationCoordinates = new MapTransformationCoordinates()
+            {
+                FirstMapCoordinate = new MapCoordinate() { X = 1, Y = 1 },
+                SecondMapCoordinate = new MapCoordinate() { X = 2, Y = 3 },
+                FirstScreenCoordinate = new Coordinate() { X = 1, Y = 1 },
+                SecondScreenCoordinate = new Coordinate() { X = 2, Y = 3 }
+            };
 
-            var result = _mapTransformationService.Transform(firstScreenCoordinate, firstMapCoordinate,
-                secondScreenCoordinate, secondMapCoordinate);
+
+            var result = _mapTransformationService.Transform(mapTransformationCoordinates);
 
             Assert.AreEqual(expectedTransformation.Scale, result.Scale);
             Assert.AreEqual(expectedTransformation.Rotation, result.Rotation);
@@ -60,13 +63,16 @@ namespace MouseGetTests.Mapper
                     Scale = 1
                 };
 
-            MapCoordinate firstMapCoordinate = new MapCoordinate() { X = 1, Y = 1 };
-            MapCoordinate secondMapCoordinate = new MapCoordinate() { X = 2, Y = 3 };
-            Coordinate firstScreenCoordinate = new Coordinate() { X = 2, Y = 2 };
-            Coordinate secondScreenCoordinate = new Coordinate() { X = 3, Y = 4 };
+            MapTransformationCoordinates mapTransformationCoordinates = new MapTransformationCoordinates()
+            {
+                FirstMapCoordinate = new MapCoordinate() { X = 1, Y = 1 },
+                SecondMapCoordinate = new MapCoordinate() { X = 2, Y = 3 },
+                FirstScreenCoordinate = new Coordinate() { X = 2, Y = 2 },
+                SecondScreenCoordinate = new Coordinate() { X = 3, Y = 4 }
+            };
 
-            var result = _mapTransformationService.Transform(firstScreenCoordinate, firstMapCoordinate,
-                secondScreenCoordinate, secondMapCoordinate);
+
+            var result = _mapTransformationService.Transform(mapTransformationCoordinates);
 
             Assert.AreEqual(expectedTransformation.Scale, result.Scale);
             Assert.AreEqual(expectedTransformation.Rotation, result.Rotation);
@@ -82,17 +88,20 @@ namespace MouseGetTests.Mapper
                 {
                     MapReferencePoint = new Point() { X = 1, Y = 1 },
                     ScreenReferencePoint = new Point() { X = 1, Y = 1 },
-                    Rotation = Math.PI/2,
+                    Rotation = Math.PI / 2,
                     Scale = 1
                 };
 
-            MapCoordinate firstMapCoordinate = new MapCoordinate() { X = 1, Y = 1 };
-            MapCoordinate secondMapCoordinate = new MapCoordinate() { X = 2, Y = 2 };
-            Coordinate firstScreenCoordinate = new Coordinate() { X = 1, Y = 1 };
-            Coordinate secondScreenCoordinate = new Coordinate() { X = 0, Y = 2 };
+            MapTransformationCoordinates mapTransformationCoordinates = new MapTransformationCoordinates()
+            {
+                FirstMapCoordinate = new MapCoordinate() { X = 1, Y = 1 },
+                SecondMapCoordinate = new MapCoordinate() { X = 2, Y = 2 },
+                FirstScreenCoordinate = new Coordinate() { X = 1, Y = 1 },
+                SecondScreenCoordinate = new Coordinate() { X = 0, Y = 2 }
+            };
 
-            var result = _mapTransformationService.Transform(firstScreenCoordinate, firstMapCoordinate,
-                secondScreenCoordinate, secondMapCoordinate);
+
+            var result = _mapTransformationService.Transform(mapTransformationCoordinates);
 
             Assert.AreEqual(expectedTransformation.Scale, result.Scale);
             Assert.AreEqual(expectedTransformation.Rotation, result.Rotation);
@@ -112,13 +121,16 @@ namespace MouseGetTests.Mapper
                     Scale = 2
                 };
 
-            MapCoordinate firstMapCoordinate = new MapCoordinate() { X = 1, Y = 1 };
-            MapCoordinate secondMapCoordinate = new MapCoordinate() { X = 3, Y = 3 };
-            Coordinate firstScreenCoordinate = new Coordinate() { X = 1, Y = 1 };
-            Coordinate secondScreenCoordinate = new Coordinate() { X = 2, Y = 2 };
+            MapTransformationCoordinates mapTransformationCoordinates = new MapTransformationCoordinates()
+            {
+                FirstMapCoordinate = new MapCoordinate() { X = 1, Y = 1 },
+                SecondMapCoordinate = new MapCoordinate() { X = 3, Y = 3 },
+                FirstScreenCoordinate = new Coordinate() { X = 1, Y = 1 },
+                SecondScreenCoordinate = new Coordinate() { X = 2, Y = 2 }
+            };
 
-            var result = _mapTransformationService.Transform(firstScreenCoordinate, firstMapCoordinate,
-                secondScreenCoordinate, secondMapCoordinate);
+
+            var result = _mapTransformationService.Transform(mapTransformationCoordinates);
 
             Assert.AreEqual(expectedTransformation.Scale, result.Scale);
             Assert.AreEqual(expectedTransformation.Rotation, result.Rotation);
@@ -129,13 +141,17 @@ namespace MouseGetTests.Mapper
         [Test]
         public void IsValidForTransformation_ValidCoordinates_ReturnsTrue()
         {
-            MapCoordinate firstMapCoordinate = new MapCoordinate() { X = 1, Y = 1 };
-            MapCoordinate secondMapCoordinate = new MapCoordinate() { X = 3, Y = 3 };
-            Coordinate firstScreenCoordinate = new Coordinate() { X = 1, Y = 1 };
-            Coordinate secondScreenCoordinate = new Coordinate() { X = 2, Y = 2 };
+            MapTransformationCoordinates mapTransformationCoordinates = new MapTransformationCoordinates()
+            {
+                FirstMapCoordinate = new MapCoordinate() { X = 1, Y = 1 },
+                SecondMapCoordinate = new MapCoordinate() { X = 3, Y = 3 },
+                FirstScreenCoordinate = new Coordinate() { X = 1, Y = 1 },
+                SecondScreenCoordinate = new Coordinate() { X = 2, Y = 2 }
+            };
 
-            var result = _mapTransformationService.IsValidForTransformation(firstScreenCoordinate, firstMapCoordinate,
-                secondScreenCoordinate, secondMapCoordinate);
+
+
+            var result = _mapTransformationService.IsValidForTransformation(mapTransformationCoordinates);
 
             Assert.IsTrue(result);
         }
@@ -143,13 +159,16 @@ namespace MouseGetTests.Mapper
         [Test]
         public void IsValidForTransformation_InvalidCoordinates_ReturnsFalse()
         {
-            MapCoordinate firstMapCoordinate = new MapCoordinate() { X = 1, Y = 1 };
-            MapCoordinate secondMapCoordinate = new MapCoordinate() { X = 1, Y = 3 };
-            Coordinate firstScreenCoordinate = new Coordinate() { X = 1, Y = 1 };
-            Coordinate secondScreenCoordinate = new Coordinate() { X = 2, Y = 2 };
+            MapTransformationCoordinates mapTransformationCoordinates = new MapTransformationCoordinates()
+            {
+                FirstMapCoordinate = new MapCoordinate() { X = 1, Y = 1 },
+                SecondMapCoordinate = new MapCoordinate() { X = 1, Y = 3 },
+                FirstScreenCoordinate = new Coordinate() { X = 1, Y = 1 },
+                SecondScreenCoordinate = new Coordinate() { X = 2, Y = 2 }
+            };
 
-            var result = _mapTransformationService.IsValidForTransformation(firstScreenCoordinate, firstMapCoordinate,
-                secondScreenCoordinate, secondMapCoordinate);
+
+            var result = _mapTransformationService.IsValidForTransformation(mapTransformationCoordinates);
 
             Assert.IsFalse(result);
         }

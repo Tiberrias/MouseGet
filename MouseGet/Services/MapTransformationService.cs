@@ -15,24 +15,18 @@ namespace MouseGet.Services
             _pointMapper = pointMapper;
         }
 
-        public bool IsValidForTransformation(Coordinate firstScreenCoordinate,
-            MapCoordinate firstMapCoordinate,
-            Coordinate secondScreenCoordinate,
-            MapCoordinate secondMapCoordinate)
+        public bool IsValidForTransformation(MapTransformationCoordinates mapTransformationCoordinates)
         {
-            return !(Math.Abs(secondScreenCoordinate.X - firstScreenCoordinate.X) < Precision) &&
-                   !(Math.Abs(secondMapCoordinate.X - firstMapCoordinate.X) < Precision);
+            return !(Math.Abs(mapTransformationCoordinates.SecondScreenCoordinate.X - mapTransformationCoordinates.FirstScreenCoordinate.X) < Precision) &&
+                   !(Math.Abs(mapTransformationCoordinates.SecondMapCoordinate.X - mapTransformationCoordinates.FirstMapCoordinate.X) < Precision);
         }
 
-        public MapTransformation Transform(Coordinate firstScreenCoordinate,
-            MapCoordinate firstMapCoordinate,
-            Coordinate secondScreenCoordinate,
-            MapCoordinate secondMapCoordinate)
+        public MapTransformation Transform(MapTransformationCoordinates mapTransformationCoordinates)
         {
-            Point firstScreenPoint = _pointMapper.Map(firstScreenCoordinate);
-            Point secondScreenPoint = _pointMapper.Map(secondScreenCoordinate);
-            Point firstMapPoint = _pointMapper.Map(firstMapCoordinate);
-            Point secondMapPoint = _pointMapper.Map(secondMapCoordinate);
+            Point firstScreenPoint = _pointMapper.Map(mapTransformationCoordinates.FirstScreenCoordinate);
+            Point secondScreenPoint = _pointMapper.Map(mapTransformationCoordinates.SecondScreenCoordinate);
+            Point firstMapPoint = _pointMapper.Map(mapTransformationCoordinates.FirstMapCoordinate);
+            Point secondMapPoint = _pointMapper.Map(mapTransformationCoordinates.SecondMapCoordinate);
 
             var result = new MapTransformation();
 

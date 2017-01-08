@@ -20,7 +20,6 @@ namespace MouseGet.Parsers
                 MapCoordinate firstMapCoordinate = new MapCoordinate();
                 Coordinate secondScreenCoordinate = new Coordinate();
                 MapCoordinate secondMapCoordinate = new MapCoordinate();
-
                 
                 if (!int.TryParse(firstScreenCoordinateX, out firstScreenCoordinate.X))
                 {
