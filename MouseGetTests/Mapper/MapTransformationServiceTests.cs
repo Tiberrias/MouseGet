@@ -126,5 +126,33 @@ namespace MouseGetTests.Mapper
             Assert.IsTrue(PointComparer.AreEqual(expectedTransformation.ScreenReferencePoint, result.ScreenReferencePoint));
         }
 
+        [Test]
+        public void IsValidForTransformation_ValidCoordinates_ReturnsTrue()
+        {
+            MapCoordinate firstMapCoordinate = new MapCoordinate() { X = 1, Y = 1 };
+            MapCoordinate secondMapCoordinate = new MapCoordinate() { X = 3, Y = 3 };
+            Coordinate firstScreenCoordinate = new Coordinate() { X = 1, Y = 1 };
+            Coordinate secondScreenCoordinate = new Coordinate() { X = 2, Y = 2 };
+
+            var result = _mapTransformationService.IsValidForTransformation(firstScreenCoordinate, firstMapCoordinate,
+                secondScreenCoordinate, secondMapCoordinate);
+
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void IsValidForTransformation_InvalidCoordinates_ReturnsFalse()
+        {
+            MapCoordinate firstMapCoordinate = new MapCoordinate() { X = 1, Y = 1 };
+            MapCoordinate secondMapCoordinate = new MapCoordinate() { X = 1, Y = 3 };
+            Coordinate firstScreenCoordinate = new Coordinate() { X = 1, Y = 1 };
+            Coordinate secondScreenCoordinate = new Coordinate() { X = 2, Y = 2 };
+
+            var result = _mapTransformationService.IsValidForTransformation(firstScreenCoordinate, firstMapCoordinate,
+                secondScreenCoordinate, secondMapCoordinate);
+
+            Assert.IsFalse(result);
+        }
+
     }
 }

@@ -39,7 +39,7 @@ namespace MouseGetTests.Services
         {
             _mouseHookListenerService.Start();
 
-            Assert.IsTrue(_mouseHookListenerService.IsListening);
+            Assert.IsTrue(_mouseHookListenerService.IsListeningForScreenCoordinates);
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace MouseGetTests.Services
         {
             _mouseHookListenerService.Stop();
 
-            Assert.IsFalse(_mouseHookListenerService.IsListening);
+            Assert.IsFalse(_mouseHookListenerService.IsListeningForScreenCoordinates);
         }
 
         [Test]

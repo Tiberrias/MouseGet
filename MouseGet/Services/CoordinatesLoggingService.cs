@@ -11,6 +11,8 @@ namespace MouseGet.Services
     {
         private readonly List<Coordinate> _coordinates;
         private int _currentZCoordinate;
+        private Coordinate _firstReferencePoint;
+        private Coordinate _secondReferencePoint;
 
         public event Action<int> CoordinatesLogChanged = delegate { };
 
@@ -52,6 +54,26 @@ namespace MouseGet.Services
         public List<Coordinate> GetCoordinates()
         {
             return _coordinates;
+        }
+
+        public Coordinate FirstReferencePoint
+        {
+            get { return _firstReferencePoint; }
+            set
+            {
+                _firstReferencePoint = value;
+                HandleCoordinatesChanged();
+            }
+        }
+
+        public Coordinate SecondReferencePoint
+        {
+            get { return _secondReferencePoint; }
+            set
+            {
+                _secondReferencePoint = value;
+                HandleCoordinatesChanged();
+            }
         }
     }
 }

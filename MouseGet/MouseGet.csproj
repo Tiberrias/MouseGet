@@ -57,7 +57,10 @@
     <Compile Include="Model\Coordinate.cs" />
     <Compile Include="Model\MapCoordinate.cs" />
     <Compile Include="Model\MapTransformation.cs" />
+    <Compile Include="Model\MapTransformationCoordinates.cs" />
     <Compile Include="Model\Point.cs" />
+    <Compile Include="Parsers\Interfaces\ITransformationCoordinatesParser.cs" />
+    <Compile Include="Parsers\TransformationCoordinatesParser.cs" />
     <Compile Include="Services\CoordinatesLoggingService.cs" />
     <Compile Include="Services\Interfaces\IMapTransformationService.cs" />
     <Compile Include="Services\Interfaces\ICoordinatesLoggingService.cs" />

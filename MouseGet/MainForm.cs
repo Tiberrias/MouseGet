@@ -4,14 +4,17 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using MouseGet.Mapper;
+using MouseGet.Services.Interfaces;
 using MouseGet.Wrappers;
 
 namespace MouseGet
 {
     public partial class MainForm : Form
     {
-        CoordinatesLoggingService _coordinatesLoggingService;
-        MouseHookListenerService _mouseHookListenerService;
+        private ICoordinatesLoggingService _coordinatesLoggingService;
+        private IMapTransformationService _mapTransformationService;
+        private MouseHookListenerService _mouseHookListenerService;
 
         public MainForm()
         {
@@ -22,7 +25,8 @@ namespace MouseGet
         public void Init()
         {
             _coordinatesLoggingService = new CoordinatesLoggingService();
-            
+            _mapTransformationService = new MapTransformationService(new PointMapper());
+
             _mouseHookListenerService = new MouseHookListenerService(_coordinatesLoggingService, new MouseHookListenerWrapper());
             _coordinatesLoggingService.CoordinatesLogChanged += OnCoordinatesLogChanged;
         }
@@ -68,7 +72,7 @@ namespace MouseGet
 
         private void OnKeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Control == true && e.KeyCode == Keys.E)
+            if (e.Control && e.KeyCode == Keys.E)
             {
                 ToggleLoggingClicks();
                 SetStatusMessage();
@@ -77,7 +81,7 @@ namespace MouseGet
 
         private void ToggleLoggingClicks()
         {
-            if (!_mouseHookListenerService.IsListening)
+            if (!_mouseHookListenerService.IsListeningForScreenCoordinates)
             {
                 _mouseHookListenerService.Start();
             }
@@ -89,7 +93,7 @@ namespace MouseGet
 
         private void SetStatusMessage()
         {
-            if (_mouseHookListenerService.IsListening)
+            if (_mouseHookListenerService.IsListeningForScreenCoordinates)
             {
                 labelStatus.ForeColor = Color.LimeGreen;
                 labelStatus.Text = "Zapisywanie koordynatów włączone";
@@ -99,6 +103,42 @@ namespace MouseGet
                 labelStatus.ForeColor = Color.Crimson;
                 labelStatus.Text = "Zapisywanie koordynatów wyłączone";
             }
+        }
+
+        private void SetReferenceListeningMessages()
+        {
+            if (_mouseHookListenerService.IsListeningForFirstReference)
+            {
+                labelFirstReference.ForeColor = Color.LimeGreen;
+            }
+            else
+            {
+                labelFirstReference.ForeColor = Color.Crimson;
+            }
+            if (_mouseHookListenerService.IsListeningForSecondReference)
+            {
+                labelSecondReference.ForeColor = Color.LimeGreen;
+            }
+            else
+            {
+                labelSecondReference.ForeColor = Color.Crimson;
+            }
+        }
+
+        private void OnFirstReferenceClearClick(object sender, EventArgs e)
+        {
+            textBoxFirstReferenceMapX.Text = "X";
+            textBoxFirstReferenceMapY.Text = "Y";
+            textBoxFirstReferenceScreenX.Text = "X";
+            textBoxFirstReferenceScreenY.Text = "Y";
+        }
+
+        private void OnSecondReferenceClrearClick(object sender, EventArgs e)
+        {
+            textBoxSecondReferenceMapX.Text = "X";
+            textBoxSecondReferenceMapY.Text = "Y";
+            textBoxSecondReferenceScreenX.Text = "X";
+            textBoxSecondReferenceScreenY.Text = "Y";
         }
     }
 }

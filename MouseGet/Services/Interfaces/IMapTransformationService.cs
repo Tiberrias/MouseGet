@@ -8,5 +8,10 @@ namespace MouseGet.Services.Interfaces
             MapCoordinate firstMapCoordinate,
             Coordinate secondScreenCoordinate,
             MapCoordinate secondMapCoordinate);
+
+        bool IsValidForTransformation(Coordinate firstScreenCoordinate, 
+            MapCoordinate firstMapCoordinate,
+            Coordinate secondScreenCoordinate,
+            MapCoordinate secondMapCoordinate);
     }
 }

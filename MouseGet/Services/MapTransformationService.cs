@@ -8,10 +8,20 @@ namespace MouseGet.Services
     public class MapTransformationService : IMapTransformationService
     {
         private readonly IPointMapper _pointMapper;
+        private const double Precision = 0.000001;
 
         public MapTransformationService(IPointMapper pointMapper)
         {
             _pointMapper = pointMapper;
+        }
+
+        public bool IsValidForTransformation(Coordinate firstScreenCoordinate,
+            MapCoordinate firstMapCoordinate,
+            Coordinate secondScreenCoordinate,
+            MapCoordinate secondMapCoordinate)
+        {
+            return !(Math.Abs(secondScreenCoordinate.X - firstScreenCoordinate.X) < Precision) &&
+                   !(Math.Abs(secondMapCoordinate.X - firstMapCoordinate.X) < Precision);
         }
 
         public MapTransformation Transform(Coordinate firstScreenCoordinate,
@@ -44,7 +54,7 @@ namespace MouseGet.Services
 
             result.ScreenReferencePoint = firstScreenPoint;
             result.MapReferencePoint = firstMapPoint;
-            
+
             return result;
         }
     }

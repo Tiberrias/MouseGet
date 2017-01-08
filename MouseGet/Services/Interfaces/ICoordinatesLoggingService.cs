@@ -18,5 +18,9 @@ namespace MouseGet.Services.Interfaces
         void SetCurrentZCoordinate(int z);
 
         List<Coordinate> GetCoordinates();
+
+        Coordinate FirstReferencePoint { get; set; }
+
+        Coordinate SecondReferencePoint { get; set; }
     }
 }

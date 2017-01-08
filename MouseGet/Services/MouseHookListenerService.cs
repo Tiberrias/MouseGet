@@ -10,7 +10,9 @@ namespace MouseGet.Services
     {
         private readonly IMouseHookListenerWrapper _mouseHookListener;
         private readonly ICoordinatesLoggingService _coordinatesLoggingService;
-        public bool IsListening { get; private set; }
+        public bool IsListeningForScreenCoordinates { get; private set; }
+        public bool IsListeningForFirstReference { get; private set; }
+        public bool IsListeningForSecondReference { get; private set; }
 
         public MouseHookListenerService(ICoordinatesLoggingService coordinatesLoggingService, IMouseHookListenerWrapper mouseHookListener)
         {
@@ -22,20 +24,55 @@ namespace MouseGet.Services
         {
             _mouseHookListener.MouseClick += OnMouseClick;
             _mouseHookListener.Enabled = true;
-            IsListening = true;
+            IsListeningForScreenCoordinates = true;
         }
 
         public void OnMouseClick(object sender, MouseEventArgs e)
         {
             Coordinate coordinate = new Coordinate() { X = e.X, Y = e.Y };
-            _coordinatesLoggingService.AddCoordinate(coordinate);
+            if (IsListeningForFirstReference)
+            {
+                _coordinatesLoggingService.FirstReferencePoint = coordinate;
+                IsListeningForFirstReference = false;
+            }
+            else if(IsListeningForSecondReference)
+            {
+                _coordinatesLoggingService.SecondReferencePoint = coordinate;
+                IsListeningForFirstReference = false;
+            }
+            else
+            {
+                _coordinatesLoggingService.AddCoordinate(coordinate);
+            }
+            if (!IsListeningForScreenCoordinates)
+            {
+                _mouseHookListener.MouseClick -= OnMouseClick;
+                _mouseHookListener.Enabled = false;
+            }
         }
 
         public void Stop()
         {
             _mouseHookListener.MouseClick -= OnMouseClick;
             _mouseHookListener.Enabled = false;
-            IsListening = false;
+            IsListeningForScreenCoordinates = false;
+        }
+
+        public void ListenForFirstReference()
+        {
+            IsListeningForFirstReference = true;
+            if(IsListeningForScreenCoordinates) return;
+            _mouseHookListener.MouseClick += OnMouseClick;
+            _mouseHookListener.Enabled = true;
+        }
+
+
+        public void ListenForSecondReference()
+        {
+            IsListeningForSecondReference = true;
+            if (IsListeningForScreenCoordinates) return;
+            _mouseHookListener.MouseClick += OnMouseClick;
+            _mouseHookListener.Enabled = true;
         }
 
         public void Dispose()
