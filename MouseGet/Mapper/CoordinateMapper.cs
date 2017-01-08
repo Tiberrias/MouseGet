@@ -1,8 +1,9 @@
-﻿using MouseGet.Model;
+﻿using MouseGet.Mapper.Interfaces;
+using MouseGet.Model;
 
 namespace MouseGet.Mapper
 {
-    public class CoordinateMapper
+    public class CoordinateMapper : ICoordinateMapper
     {
         public MapCoordinate Map(Coordinate coordinate)
         {

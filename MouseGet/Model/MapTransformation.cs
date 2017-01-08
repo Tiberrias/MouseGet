@@ -5,7 +5,7 @@
         public double Scale;
 
         public double Rotation;
-
+        
         public Point MapReferencePoint;
 
         public Point ScreenReferencePoint;

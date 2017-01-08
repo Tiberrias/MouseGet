@@ -51,11 +51,15 @@
     <Compile Include="Converters\IMapCoordinateConverter.cs" />
     <Compile Include="Converters\MapCoordinateConverter.cs" />
     <Compile Include="Mapper\CoordinateMapper.cs" />
+    <Compile Include="Mapper\Interfaces\ICoordinateMapper.cs" />
+    <Compile Include="Mapper\Interfaces\IPointMapper.cs" />
+    <Compile Include="Mapper\PointMapper.cs" />
     <Compile Include="Model\Coordinate.cs" />
     <Compile Include="Model\MapCoordinate.cs" />
     <Compile Include="Model\MapTransformation.cs" />
     <Compile Include="Model\Point.cs" />
     <Compile Include="Services\CoordinatesLoggingService.cs" />
+    <Compile Include="Services\Interfaces\IMapTransformationService.cs" />
     <Compile Include="Services\Interfaces\ICoordinatesLoggingService.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
