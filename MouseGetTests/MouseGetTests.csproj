@@ -61,10 +61,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\MapCoordinateConverterTests.cs" />
+    <Compile Include="Mapper\MapTransformationServiceTests.cs" />
+    <Compile Include="Mapper\PointMapperTests.cs" />
     <Compile Include="Mapper\CoordinateMapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CoordinatesLoggingServiceTests.cs" />
     <Compile Include="Services\MouseHookListenerServiceTests.cs" />
+    <Compile Include="TestUtilities\PointComparerTests.cs" />
+    <Compile Include="TestUtilities\PointComparer.cs" />
     <Compile Include="TestUtilities\MapCoordinateComparer.cs" />
     <Compile Include="TestUtilities\MapCoordinateComparerTests.cs" />
   </ItemGroup>

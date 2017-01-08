@@ -43,7 +43,7 @@ namespace MouseGet.Services
             result.Rotation = mapRotation - screenRotation;
 
             result.ScreenReferencePoint = firstScreenPoint;
-            result.MapReferencePoint = secondScreenPoint;
+            result.MapReferencePoint = firstMapPoint;
             
             return result;
         }
