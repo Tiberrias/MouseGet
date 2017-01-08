@@ -32,13 +32,13 @@ namespace MouseGet.Services
             Coordinate coordinate = new Coordinate() { X = e.X, Y = e.Y };
             if (IsListeningForFirstReference)
             {
-                _coordinatesLoggingService.FirstReferencePoint = coordinate;
                 IsListeningForFirstReference = false;
+                _coordinatesLoggingService.FirstReferencePoint = coordinate;
             }
             else if(IsListeningForSecondReference)
             {
+                IsListeningForSecondReference = false;
                 _coordinatesLoggingService.SecondReferencePoint = coordinate;
-                IsListeningForFirstReference = false;
             }
             else
             {
@@ -66,13 +66,32 @@ namespace MouseGet.Services
             _mouseHookListener.Enabled = true;
         }
 
-
+        public void StopListeningForFisrtReference()
+        {
+            IsListeningForFirstReference = false;
+            if (!IsListeningForScreenCoordinates)
+            {
+                _mouseHookListener.MouseClick -= OnMouseClick;
+                _mouseHookListener.Enabled = false;
+            }
+        }
+        
         public void ListenForSecondReference()
         {
             IsListeningForSecondReference = true;
             if (IsListeningForScreenCoordinates) return;
             _mouseHookListener.MouseClick += OnMouseClick;
             _mouseHookListener.Enabled = true;
+        }
+
+        public void StopListeningForSecondReference()
+        {
+            IsListeningForSecondReference = false;
+            if (!IsListeningForScreenCoordinates)
+            {
+                _mouseHookListener.MouseClick -= OnMouseClick;
+                _mouseHookListener.Enabled = false;
+            }
         }
 
         public void Dispose()

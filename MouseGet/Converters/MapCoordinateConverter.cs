@@ -1,26 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MouseGet.Mapper;
+using MouseGet.Mapper.Interfaces;
 using MouseGet.Model;
 
 namespace MouseGet.Converters
 {
     public class MapCoordinateConverter : IMapCoordinateConverter
     {
-        private readonly MapTransformation _mapTransformation;
-        private readonly CoordinateMapper _coordinateMapper;
+        private readonly ICoordinateMapper _coordinateMapper;
+        private MapTransformation _mapTransformation;
 
-        public MapCoordinateConverter(MapTransformation mapTransformation, CoordinateMapper coordinateMapper)
+        public MapTransformation MapTransformation
         {
-            _mapTransformation = mapTransformation;
+            set { _mapTransformation = value; }
+        }
+
+        public MapCoordinateConverter(ICoordinateMapper coordinateMapper)
+        {
             _coordinateMapper = coordinateMapper;
         }
 
         public MapCoordinate Convert(Coordinate coordinate)
         {
             MapCoordinate baseCoordinate = _coordinateMapper.Map(coordinate);
-            MapCoordinate result = new MapCoordinate() {Z = baseCoordinate.Z};
+            MapCoordinate result = new MapCoordinate() { Z = baseCoordinate.Z };
 
             result.Y = _mapTransformation.MapReferencePoint.Y +
                        _mapTransformation.Scale * Math.Sin(_mapTransformation.Rotation) *

@@ -275,7 +275,7 @@
             this.buttonSecondReferenceClear.TabIndex = 22;
             this.buttonSecondReferenceClear.Text = "Wyczyść";
             this.buttonSecondReferenceClear.UseVisualStyleBackColor = true;
-            this.buttonSecondReferenceClear.Click += new System.EventHandler(this.OnSecondReferenceClrearClick);
+            this.buttonSecondReferenceClear.Click += new System.EventHandler(this.OnSecondReferenceClearClick);
             // 
             // MainForm
             // 
@@ -310,7 +310,7 @@
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "MouseGet 1.0";
+            this.Text = "MouseGet 1.1";
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZValue)).EndInit();
             this.ResumeLayout(false);

@@ -62,6 +62,8 @@
     <Compile Include="Parsers\Interfaces\ITransformationCoordinatesParser.cs" />
     <Compile Include="Parsers\TransformationCoordinatesParser.cs" />
     <Compile Include="Services\CoordinatesLoggingService.cs" />
+    <Compile Include="Services\CoordinatesPrintingService.cs" />
+    <Compile Include="Services\Interfaces\ICoordinatesPrintingService.cs" />
     <Compile Include="Services\Interfaces\IMapTransformationService.cs" />
     <Compile Include="Services\Interfaces\ICoordinatesLoggingService.cs" />
     <Compile Include="MainForm.cs">

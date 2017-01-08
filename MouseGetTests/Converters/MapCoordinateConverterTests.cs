@@ -29,7 +29,7 @@ namespace MouseGetTests.Converters
                 ScreenReferencePoint = new Point() { X = 1, Y = 1 },
                 MapReferencePoint = new Point() { X = 11, Y = 11 }
             };
-            _mapCoordinateConverter = new MapCoordinateConverter(mapTransformation, new CoordinateMapper());
+            _mapCoordinateConverter = new MapCoordinateConverter(new CoordinateMapper()) { MapTransformation = mapTransformation };
 
             MapCoordinate expectedCoordinate = new MapCoordinate() { X = 20, Y = 20, Z = 5 };
             Coordinate initialCoordinate = new Coordinate() { X = 10, Y = 10, Z = 5 };
@@ -49,7 +49,7 @@ namespace MouseGetTests.Converters
                 ScreenReferencePoint = new Point() { X = 1, Y = 1 },
                 MapReferencePoint = new Point() { X = 1, Y = 1 }
             };
-            _mapCoordinateConverter = new MapCoordinateConverter(mapTransformation, new CoordinateMapper());
+            _mapCoordinateConverter = new MapCoordinateConverter(new CoordinateMapper()) { MapTransformation = mapTransformation };
 
             MapCoordinate expectedCoordinate = new MapCoordinate() { X = 3, Y = 5, Z = 5 };
             Coordinate initialCoordinate = new Coordinate() { X = 2, Y = 3, Z = 5 };
@@ -69,7 +69,8 @@ namespace MouseGetTests.Converters
                 ScreenReferencePoint = new Point() { X = 1, Y = 1 },
                 MapReferencePoint = new Point() { X = 1, Y = 1 }
             };
-            _mapCoordinateConverter = new MapCoordinateConverter(mapTransformation, new CoordinateMapper());
+
+            _mapCoordinateConverter = new MapCoordinateConverter(new CoordinateMapper()) { MapTransformation = mapTransformation };
 
             MapCoordinate expectedCoordinate = new MapCoordinate() { X = 0, Y = 1, Z = 5 };
             Coordinate initialCoordinate = new Coordinate() { X = 1, Y = 2, Z = 5 };
@@ -89,7 +90,8 @@ namespace MouseGetTests.Converters
                 ScreenReferencePoint = new Point() { X = 2, Y = 3 },
                 MapReferencePoint = new Point() { X = 1, Y = 1 }
             };
-            _mapCoordinateConverter = new MapCoordinateConverter(mapTransformation, new CoordinateMapper());
+
+            _mapCoordinateConverter = new MapCoordinateConverter(new CoordinateMapper()) { MapTransformation = mapTransformation };
 
             List<MapCoordinate> expectedCoordinates = new List<MapCoordinate>()
             {

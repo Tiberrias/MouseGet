@@ -4,7 +4,11 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using MouseGet.Converters;
 using MouseGet.Mapper;
+using MouseGet.Model;
+using MouseGet.Parsers;
+using MouseGet.Parsers.Interfaces;
 using MouseGet.Services.Interfaces;
 using MouseGet.Wrappers;
 
@@ -14,6 +18,9 @@ namespace MouseGet
     {
         private ICoordinatesLoggingService _coordinatesLoggingService;
         private IMapTransformationService _mapTransformationService;
+        private IMapCoordinateConverter _mapCoordinateConverter;
+        private ICoordinatesPrintingService _coordinatesPrintingService;
+        private ITransformationCoordinatesParser _transformationCoordinatesParser;
         private MouseHookListenerService _mouseHookListenerService;
 
         public MainForm()
@@ -26,6 +33,9 @@ namespace MouseGet
         {
             _coordinatesLoggingService = new CoordinatesLoggingService();
             _mapTransformationService = new MapTransformationService(new PointMapper());
+            _mapCoordinateConverter = new MapCoordinateConverter(new CoordinateMapper());
+            _coordinatesPrintingService = new CoordinatesPrintingService();
+            _transformationCoordinatesParser = new TransformationCoordinatesParser();
 
             _mouseHookListenerService = new MouseHookListenerService(_coordinatesLoggingService, new MouseHookListenerWrapper());
             _coordinatesLoggingService.CoordinatesLogChanged += OnCoordinatesLogChanged;
@@ -34,6 +44,17 @@ namespace MouseGet
         private void OnCoordinatesLogChanged(int numberOfLoggedCoordinates)
         {
             textBoxSavedNumber.Text = numberOfLoggedCoordinates.ToString();
+            if (_coordinatesLoggingService.FirstReferencePoint != null)
+            {
+                textBoxFirstReferenceScreenX.Text = _coordinatesLoggingService.FirstReferencePoint.X.ToString();
+                textBoxFirstReferenceScreenY.Text = _coordinatesLoggingService.FirstReferencePoint.Y.ToString();
+            }
+            if (_coordinatesLoggingService.SecondReferencePoint != null)
+            {
+                textBoxSecondReferenceScreenX.Text = _coordinatesLoggingService.SecondReferencePoint.X.ToString();
+                textBoxSecondReferenceScreenY.Text = _coordinatesLoggingService.SecondReferencePoint.Y.ToString();
+            }
+            SetReferenceListeningMessages();
         }
 
         private void SaveToFile(object sender, CancelEventArgs e)
@@ -46,7 +67,13 @@ namespace MouseGet
                     File.Delete(filename);
                 }
 
-                File.AppendAllText(filename, _coordinatesLoggingService.GetCoordinatesLog());
+                File.AppendAllText(filename,
+                    _coordinatesPrintingService.Print(
+                        _mapCoordinateConverter.Convert(
+                            _coordinatesLoggingService.GetCoordinates()
+                            )
+                        )
+                    );
             }
             catch (Exception ex)
             {
@@ -56,6 +83,29 @@ namespace MouseGet
 
         private void OnSaveClick(object sender, EventArgs e)
         {
+            try
+            {
+                var mapTransformationCoordinates = _transformationCoordinatesParser.Parse(
+                    textBoxFirstReferenceScreenX.Text,
+                    textBoxFirstReferenceScreenY.Text,
+                    textBoxFirstReferenceMapX.Text,
+                    textBoxFirstReferenceMapY.Text,
+                    textBoxSecondReferenceScreenX.Text,
+                    textBoxSecondReferenceScreenY.Text,
+                    textBoxSecondReferenceMapX.Text,
+                    textBoxSecondReferenceMapY.Text
+                );
+                if (!_mapTransformationService.IsValidForTransformation(mapTransformationCoordinates))
+                {
+                    throw new ArgumentException("Wybrane punkty referencyjne nie pozwalają na obliczenie transformacji ukłądu współrzędnych");
+                }
+                _mapCoordinateConverter.MapTransformation = _mapTransformationService.Transform(mapTransformationCoordinates);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+                return;
+            }
             saveFileDialogCoordinates.ShowDialog();
         }
 
@@ -74,8 +124,30 @@ namespace MouseGet
         {
             if (e.Control && e.KeyCode == Keys.E)
             {
-                ToggleLoggingClicks();
-                SetStatusMessage();
+                if (!_mouseHookListenerService.IsListeningForFirstReference &&
+                    !_mouseHookListenerService.IsListeningForSecondReference)
+                {
+                    ToggleLoggingClicks();
+                    SetStatusMessage();
+                }
+            }
+            if (e.Control && e.KeyCode == Keys.D1)
+            {
+                if (!_mouseHookListenerService.IsListeningForScreenCoordinates &&
+                    !_mouseHookListenerService.IsListeningForSecondReference)
+                {
+                    ToggleLoggingFirstReference();
+                    SetReferenceListeningMessages();
+                }
+            }
+            if (e.Control && e.KeyCode == Keys.D2)
+            {
+                if (!_mouseHookListenerService.IsListeningForFirstReference &&
+                    !_mouseHookListenerService.IsListeningForScreenCoordinates)
+                {
+                    ToggleLoggingSecondReference();
+                    SetReferenceListeningMessages();
+                }
             }
         }
 
@@ -88,6 +160,30 @@ namespace MouseGet
             else
             {
                 _mouseHookListenerService.Stop();
+            }
+        }
+
+        private void ToggleLoggingFirstReference()
+        {
+            if (!_mouseHookListenerService.IsListeningForFirstReference)
+            {
+                _mouseHookListenerService.ListenForFirstReference();
+            }
+            else
+            {
+                _mouseHookListenerService.StopListeningForFisrtReference();
+            }
+        }
+
+        private void ToggleLoggingSecondReference()
+        {
+            if (!_mouseHookListenerService.IsListeningForSecondReference)
+            {
+                _mouseHookListenerService.ListenForSecondReference();
+            }
+            else
+            {
+                _mouseHookListenerService.StopListeningForSecondReference();
             }
         }
 
@@ -131,14 +227,16 @@ namespace MouseGet
             textBoxFirstReferenceMapY.Text = "Y";
             textBoxFirstReferenceScreenX.Text = "X";
             textBoxFirstReferenceScreenY.Text = "Y";
+            _coordinatesLoggingService.FirstReferencePoint = null;
         }
 
-        private void OnSecondReferenceClrearClick(object sender, EventArgs e)
+        private void OnSecondReferenceClearClick(object sender, EventArgs e)
         {
             textBoxSecondReferenceMapX.Text = "X";
             textBoxSecondReferenceMapY.Text = "Y";
             textBoxSecondReferenceScreenX.Text = "X";
             textBoxSecondReferenceScreenY.Text = "Y";
+            _coordinatesLoggingService.SecondReferencePoint = null;
         }
     }
 }
