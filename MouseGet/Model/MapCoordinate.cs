@@ -6,11 +6,11 @@ namespace MouseGet.Model
     {
         public double X;
         public double Y;
-        public double Z;
+        public decimal Z;
 
         public override string ToString()
         {
-            return ("{" + Y.ToString(CultureInfo.InvariantCulture) + "," + X.ToString(CultureInfo.InvariantCulture) + "," + Z.ToString(CultureInfo.InvariantCulture) + "}");
+            return ("{" + X.ToString(CultureInfo.InvariantCulture) + "," + Y.ToString(CultureInfo.InvariantCulture) + "," + Z.ToString(CultureInfo.InvariantCulture) + "}");
         }
     }
 }

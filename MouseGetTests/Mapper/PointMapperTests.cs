@@ -31,7 +31,7 @@ namespace MouseGetTests.Mapper
         public void Map_MapCoordinate_MapsProperties()
         {
             Point expectedPoint = new Point() { X = 1.1, Y = 2 };
-            MapCoordinate coordinate = new MapCoordinate() { X = 1.1, Y = 2, Z = 4.1 };
+            MapCoordinate coordinate = new MapCoordinate() { X = 1.1, Y = 2, Z = 4.1M };
 
             var result = _pointMapper.Map(coordinate);
 

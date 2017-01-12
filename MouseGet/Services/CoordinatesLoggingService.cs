@@ -10,7 +10,7 @@ namespace MouseGet.Services
     public class CoordinatesLoggingService : ICoordinatesLoggingService
     {
         private readonly List<Coordinate> _coordinates;
-        private int _currentZCoordinate;
+        private decimal _currentZCoordinate;
         private Coordinate _firstReferencePoint;
         private Coordinate _secondReferencePoint;
 
@@ -41,7 +41,7 @@ namespace MouseGet.Services
             return stringBuilder.ToString();
         }
 
-        public void SetCurrentZCoordinate(int z)
+        public void SetCurrentZCoordinate(decimal z)
         {
             _currentZCoordinate = z;
         }

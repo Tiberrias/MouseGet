@@ -115,8 +115,8 @@ namespace MouseGet
 
         private void OnZValueChanged(object sender, EventArgs e)
         {
-            int ZValue = Convert.ToInt32(numericUpDownZValue.Value);
-            _coordinatesLoggingService.SetCurrentZCoordinate(ZValue);
+            var zValue = numericUpDownZValue.Value;
+            _coordinatesLoggingService.SetCurrentZCoordinate(zValue);
         }
 
         private void OnKeyUp(object sender, KeyEventArgs e)
@@ -236,6 +236,11 @@ namespace MouseGet
             textBoxSecondReferenceScreenX.Text = "X";
             textBoxSecondReferenceScreenY.Text = "Y";
             _coordinatesLoggingService.SecondReferencePoint = null;
+        }
+
+        private void OnToggleOnTopClick(object sender, EventArgs e)
+        {
+            TopMost = !TopMost;
         }
     }
 }

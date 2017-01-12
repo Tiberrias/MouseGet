@@ -11,7 +11,7 @@ namespace MouseGetTests.TestUtilities
         {
             Assert.AreEqual(expected.X, actual.X, Delta);
             Assert.AreEqual(expected.Y, actual.Y, Delta);
-            Assert.AreEqual(expected.Z, actual.Z, Delta);
+            Assert.AreEqual(expected.Z, actual.Z);
 
             return true;
         }

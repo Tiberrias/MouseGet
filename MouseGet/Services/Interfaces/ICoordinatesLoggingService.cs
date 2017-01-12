@@ -15,7 +15,7 @@ namespace MouseGet.Services.Interfaces
 
         string GetCoordinatesLog();
 
-        void SetCurrentZCoordinate(int z);
+        void SetCurrentZCoordinate(decimal z);
 
         List<Coordinate> GetCoordinates();
 

@@ -4,7 +4,7 @@
     {
         public int X;
         public int Y;
-        public int Z;
+        public decimal Z;
 
         public override string ToString()
         {

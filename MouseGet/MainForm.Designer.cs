@@ -53,6 +53,7 @@
             this.labelForward2 = new System.Windows.Forms.Label();
             this.buttonFirstReferenceClear = new System.Windows.Forms.Button();
             this.buttonSecondReferenceClear = new System.Windows.Forms.Button();
+            this.buttonToggleOnTop = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZValue)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,6 +88,12 @@
             // 
             // numericUpDownZValue
             // 
+            this.numericUpDownZValue.DecimalPlaces = 2;
+            this.numericUpDownZValue.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.numericUpDownZValue.Location = new System.Drawing.Point(120, 159);
             this.numericUpDownZValue.Maximum = new decimal(new int[] {
             10000,
@@ -176,16 +183,16 @@
             this.textBoxFirstReferenceScreenX.Location = new System.Drawing.Point(16, 78);
             this.textBoxFirstReferenceScreenX.Name = "textBoxFirstReferenceScreenX";
             this.textBoxFirstReferenceScreenX.ReadOnly = true;
-            this.textBoxFirstReferenceScreenX.Size = new System.Drawing.Size(26, 20);
+            this.textBoxFirstReferenceScreenX.Size = new System.Drawing.Size(36, 20);
             this.textBoxFirstReferenceScreenX.TabIndex = 11;
             this.textBoxFirstReferenceScreenX.Text = "X";
             // 
             // textBoxFirstReferenceScreenY
             // 
-            this.textBoxFirstReferenceScreenY.Location = new System.Drawing.Point(48, 78);
+            this.textBoxFirstReferenceScreenY.Location = new System.Drawing.Point(58, 78);
             this.textBoxFirstReferenceScreenY.Name = "textBoxFirstReferenceScreenY";
             this.textBoxFirstReferenceScreenY.ReadOnly = true;
-            this.textBoxFirstReferenceScreenY.Size = new System.Drawing.Size(26, 20);
+            this.textBoxFirstReferenceScreenY.Size = new System.Drawing.Size(36, 20);
             this.textBoxFirstReferenceScreenY.TabIndex = 12;
             this.textBoxFirstReferenceScreenY.Text = "Y";
             // 
@@ -194,55 +201,55 @@
             this.textBoxSecondReferenceScreenX.Location = new System.Drawing.Point(16, 119);
             this.textBoxSecondReferenceScreenX.Name = "textBoxSecondReferenceScreenX";
             this.textBoxSecondReferenceScreenX.ReadOnly = true;
-            this.textBoxSecondReferenceScreenX.Size = new System.Drawing.Size(26, 20);
+            this.textBoxSecondReferenceScreenX.Size = new System.Drawing.Size(36, 20);
             this.textBoxSecondReferenceScreenX.TabIndex = 13;
             this.textBoxSecondReferenceScreenX.Text = "X";
             // 
             // textBoxSecondReferenceScreenY
             // 
-            this.textBoxSecondReferenceScreenY.Location = new System.Drawing.Point(48, 119);
+            this.textBoxSecondReferenceScreenY.Location = new System.Drawing.Point(58, 119);
             this.textBoxSecondReferenceScreenY.Name = "textBoxSecondReferenceScreenY";
             this.textBoxSecondReferenceScreenY.ReadOnly = true;
-            this.textBoxSecondReferenceScreenY.Size = new System.Drawing.Size(26, 20);
+            this.textBoxSecondReferenceScreenY.Size = new System.Drawing.Size(36, 20);
             this.textBoxSecondReferenceScreenY.TabIndex = 14;
             this.textBoxSecondReferenceScreenY.Text = "Y";
             // 
             // textBoxFirstReferenceMapX
             // 
-            this.textBoxFirstReferenceMapX.Location = new System.Drawing.Point(105, 78);
+            this.textBoxFirstReferenceMapX.Location = new System.Drawing.Point(121, 78);
             this.textBoxFirstReferenceMapX.Name = "textBoxFirstReferenceMapX";
-            this.textBoxFirstReferenceMapX.Size = new System.Drawing.Size(26, 20);
+            this.textBoxFirstReferenceMapX.Size = new System.Drawing.Size(55, 20);
             this.textBoxFirstReferenceMapX.TabIndex = 15;
             this.textBoxFirstReferenceMapX.Text = "X";
             // 
             // textBoxFirstReferenceMapY
             // 
-            this.textBoxFirstReferenceMapY.Location = new System.Drawing.Point(137, 78);
+            this.textBoxFirstReferenceMapY.Location = new System.Drawing.Point(182, 78);
             this.textBoxFirstReferenceMapY.Name = "textBoxFirstReferenceMapY";
-            this.textBoxFirstReferenceMapY.Size = new System.Drawing.Size(26, 20);
+            this.textBoxFirstReferenceMapY.Size = new System.Drawing.Size(56, 20);
             this.textBoxFirstReferenceMapY.TabIndex = 16;
             this.textBoxFirstReferenceMapY.Text = "Y";
             // 
             // textBoxSecondReferenceMapX
             // 
-            this.textBoxSecondReferenceMapX.Location = new System.Drawing.Point(105, 119);
+            this.textBoxSecondReferenceMapX.Location = new System.Drawing.Point(120, 119);
             this.textBoxSecondReferenceMapX.Name = "textBoxSecondReferenceMapX";
-            this.textBoxSecondReferenceMapX.Size = new System.Drawing.Size(26, 20);
+            this.textBoxSecondReferenceMapX.Size = new System.Drawing.Size(56, 20);
             this.textBoxSecondReferenceMapX.TabIndex = 17;
             this.textBoxSecondReferenceMapX.Text = "X";
             // 
             // textBoxSecondReferenceMapY
             // 
-            this.textBoxSecondReferenceMapY.Location = new System.Drawing.Point(137, 119);
+            this.textBoxSecondReferenceMapY.Location = new System.Drawing.Point(182, 119);
             this.textBoxSecondReferenceMapY.Name = "textBoxSecondReferenceMapY";
-            this.textBoxSecondReferenceMapY.Size = new System.Drawing.Size(26, 20);
+            this.textBoxSecondReferenceMapY.Size = new System.Drawing.Size(56, 20);
             this.textBoxSecondReferenceMapY.TabIndex = 18;
             this.textBoxSecondReferenceMapY.Text = "Y";
             // 
             // labelForward1
             // 
             this.labelForward1.AutoSize = true;
-            this.labelForward1.Location = new System.Drawing.Point(80, 81);
+            this.labelForward1.Location = new System.Drawing.Point(100, 81);
             this.labelForward1.Name = "labelForward1";
             this.labelForward1.Size = new System.Drawing.Size(19, 13);
             this.labelForward1.TabIndex = 19;
@@ -251,7 +258,7 @@
             // labelForward2
             // 
             this.labelForward2.AutoSize = true;
-            this.labelForward2.Location = new System.Drawing.Point(80, 122);
+            this.labelForward2.Location = new System.Drawing.Point(100, 122);
             this.labelForward2.Name = "labelForward2";
             this.labelForward2.Size = new System.Drawing.Size(19, 13);
             this.labelForward2.TabIndex = 20;
@@ -259,9 +266,9 @@
             // 
             // buttonFirstReferenceClear
             // 
-            this.buttonFirstReferenceClear.Location = new System.Drawing.Point(169, 76);
+            this.buttonFirstReferenceClear.Location = new System.Drawing.Point(244, 76);
             this.buttonFirstReferenceClear.Name = "buttonFirstReferenceClear";
-            this.buttonFirstReferenceClear.Size = new System.Drawing.Size(61, 23);
+            this.buttonFirstReferenceClear.Size = new System.Drawing.Size(84, 23);
             this.buttonFirstReferenceClear.TabIndex = 21;
             this.buttonFirstReferenceClear.Text = "Wyczyść";
             this.buttonFirstReferenceClear.UseVisualStyleBackColor = true;
@@ -269,19 +276,30 @@
             // 
             // buttonSecondReferenceClear
             // 
-            this.buttonSecondReferenceClear.Location = new System.Drawing.Point(169, 116);
+            this.buttonSecondReferenceClear.Location = new System.Drawing.Point(244, 117);
             this.buttonSecondReferenceClear.Name = "buttonSecondReferenceClear";
-            this.buttonSecondReferenceClear.Size = new System.Drawing.Size(61, 23);
+            this.buttonSecondReferenceClear.Size = new System.Drawing.Size(84, 23);
             this.buttonSecondReferenceClear.TabIndex = 22;
             this.buttonSecondReferenceClear.Text = "Wyczyść";
             this.buttonSecondReferenceClear.UseVisualStyleBackColor = true;
             this.buttonSecondReferenceClear.Click += new System.EventHandler(this.OnSecondReferenceClearClick);
+            // 
+            // buttonToggleOnTop
+            // 
+            this.buttonToggleOnTop.Location = new System.Drawing.Point(182, 182);
+            this.buttonToggleOnTop.Name = "buttonToggleOnTop";
+            this.buttonToggleOnTop.Size = new System.Drawing.Size(146, 23);
+            this.buttonToggleOnTop.TabIndex = 23;
+            this.buttonToggleOnTop.Text = "Przełącz na wierzch";
+            this.buttonToggleOnTop.UseVisualStyleBackColor = true;
+            this.buttonToggleOnTop.Click += new System.EventHandler(this.OnToggleOnTopClick);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(335, 243);
+            this.Controls.Add(this.buttonToggleOnTop);
             this.Controls.Add(this.buttonSecondReferenceClear);
             this.Controls.Add(this.buttonFirstReferenceClear);
             this.Controls.Add(this.labelForward2);
@@ -344,6 +362,7 @@
         private System.Windows.Forms.Label labelForward2;
         private System.Windows.Forms.Button buttonFirstReferenceClear;
         private System.Windows.Forms.Button buttonSecondReferenceClear;
+        private System.Windows.Forms.Button buttonToggleOnTop;
     }
 }
 
