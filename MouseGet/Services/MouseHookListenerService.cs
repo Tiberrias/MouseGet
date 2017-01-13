@@ -29,25 +29,32 @@ namespace MouseGet.Services
 
         public void OnMouseClick(object sender, MouseEventArgs e)
         {
-            Coordinate coordinate = new Coordinate() { X = e.X, Y = e.Y };
-            if (IsListeningForFirstReference)
+            if (e.Button == MouseButtons.Left)
             {
-                IsListeningForFirstReference = false;
-                _coordinatesLoggingService.FirstReferencePoint = coordinate;
+                Coordinate coordinate = new Coordinate() {X = e.X, Y = e.Y};
+                if (IsListeningForFirstReference)
+                {
+                    IsListeningForFirstReference = false;
+                    _coordinatesLoggingService.FirstReferencePoint = coordinate;
+                }
+                else if (IsListeningForSecondReference)
+                {
+                    IsListeningForSecondReference = false;
+                    _coordinatesLoggingService.SecondReferencePoint = coordinate;
+                }
+                else
+                {
+                    _coordinatesLoggingService.AddCoordinate(coordinate);
+                }
+                if (!IsListeningForScreenCoordinates)
+                {
+                    _mouseHookListener.MouseClick -= OnMouseClick;
+                    _mouseHookListener.Enabled = false;
+                }
             }
-            else if(IsListeningForSecondReference)
+            if (e.Button == MouseButtons.Right)
             {
-                IsListeningForSecondReference = false;
-                _coordinatesLoggingService.SecondReferencePoint = coordinate;
-            }
-            else
-            {
-                _coordinatesLoggingService.AddCoordinate(coordinate);
-            }
-            if (!IsListeningForScreenCoordinates)
-            {
-                _mouseHookListener.MouseClick -= OnMouseClick;
-                _mouseHookListener.Enabled = false;
+                _coordinatesLoggingService.RemoveLastCoordinate();
             }
         }
 

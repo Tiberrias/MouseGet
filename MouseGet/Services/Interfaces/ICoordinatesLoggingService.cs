@@ -22,5 +22,7 @@ namespace MouseGet.Services.Interfaces
         Coordinate FirstReferencePoint { get; set; }
 
         Coordinate SecondReferencePoint { get; set; }
+
+        void RemoveLastCoordinate();
     }
 }

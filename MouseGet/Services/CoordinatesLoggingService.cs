@@ -6,7 +6,7 @@ using MouseGet.Model;
 
 namespace MouseGet.Services
 {
-    
+
     public class CoordinatesLoggingService : ICoordinatesLoggingService
     {
         private readonly List<Coordinate> _coordinates;
@@ -72,6 +72,15 @@ namespace MouseGet.Services
             set
             {
                 _secondReferencePoint = value;
+                HandleCoordinatesChanged();
+            }
+        }
+
+        public void RemoveLastCoordinate()
+        {
+            if (_coordinates.Count > 0)
+            {
+                _coordinates.RemoveAt(_coordinates.Count - 1);
                 HandleCoordinatesChanged();
             }
         }

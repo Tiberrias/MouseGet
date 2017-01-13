@@ -54,6 +54,7 @@
             this.buttonFirstReferenceClear = new System.Windows.Forms.Button();
             this.buttonSecondReferenceClear = new System.Windows.Forms.Button();
             this.buttonToggleOnTop = new System.Windows.Forms.Button();
+            this.labelInfoRemoveLastCoordinate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZValue)).BeginInit();
             this.SuspendLayout();
             // 
@@ -286,7 +287,7 @@
             // 
             // buttonToggleOnTop
             // 
-            this.buttonToggleOnTop.Location = new System.Drawing.Point(182, 182);
+            this.buttonToggleOnTop.Location = new System.Drawing.Point(182, 159);
             this.buttonToggleOnTop.Name = "buttonToggleOnTop";
             this.buttonToggleOnTop.Size = new System.Drawing.Size(146, 23);
             this.buttonToggleOnTop.TabIndex = 23;
@@ -294,11 +295,21 @@
             this.buttonToggleOnTop.UseVisualStyleBackColor = true;
             this.buttonToggleOnTop.Click += new System.EventHandler(this.OnToggleOnTopClick);
             // 
+            // labelInfoRemoveLastCoordinate
+            // 
+            this.labelInfoRemoveLastCoordinate.AutoSize = true;
+            this.labelInfoRemoveLastCoordinate.Location = new System.Drawing.Point(180, 188);
+            this.labelInfoRemoveLastCoordinate.Name = "labelInfoRemoveLastCoordinate";
+            this.labelInfoRemoveLastCoordinate.Size = new System.Drawing.Size(117, 13);
+            this.labelInfoRemoveLastCoordinate.TabIndex = 24;
+            this.labelInfoRemoveLastCoordinate.Text = "Kliknij RMB by cofnąć. ";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(335, 243);
+            this.Controls.Add(this.labelInfoRemoveLastCoordinate);
             this.Controls.Add(this.buttonToggleOnTop);
             this.Controls.Add(this.buttonSecondReferenceClear);
             this.Controls.Add(this.buttonFirstReferenceClear);
@@ -363,6 +374,7 @@
         private System.Windows.Forms.Button buttonFirstReferenceClear;
         private System.Windows.Forms.Button buttonSecondReferenceClear;
         private System.Windows.Forms.Button buttonToggleOnTop;
+        private System.Windows.Forms.Label labelInfoRemoveLastCoordinate;
     }
 }
 

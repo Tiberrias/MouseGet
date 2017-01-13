@@ -133,5 +133,31 @@ namespace MouseGetTests.Services
             Assert.Contains(someOtherCoordinate, result);
         }
 
+        [Test]
+        public void RemoveLastCoordinate_RemovesLastCoordinate()
+        {
+            var someCoordinate = new Coordinate() { X = 1, Y = 1 };
+            var someOtherCoordinate = new Coordinate() { X = 2, Y = 2 };
+
+            _coordinatesLoggingService.AddCoordinate(someCoordinate);
+            _coordinatesLoggingService.AddCoordinate(someOtherCoordinate);
+
+            _coordinatesLoggingService.RemoveLastCoordinate();
+
+            Assert.AreEqual(1,_coordinatesLoggingService.GetCoordinates().Count);
+        }
+
+        [Test]
+        public void RemoveLastCoordinate_ListWithOneCoordinate_RemovesLastCoordinate()
+        {
+            var someCoordinate = new Coordinate() { X = 1, Y = 1 };
+
+            _coordinatesLoggingService.AddCoordinate(someCoordinate);
+
+            _coordinatesLoggingService.RemoveLastCoordinate();
+
+            Assert.AreEqual(0, _coordinatesLoggingService.GetCoordinates().Count);
+        }
+
     }
 }
